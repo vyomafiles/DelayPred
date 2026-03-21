@@ -21,30 +21,30 @@ const steps = [
   {
     number: '01',
     icon: Search,
-    title: 'Enter Your Route',
-    desc: 'Select your departure station, destination, and travel time. Vyoma identifies every relevant TfL line segment and builds your journey graph.',
-    tags: ['Departure', 'Destination', 'Timestamp'],
+    title: 'Pick a Line',
+    desc: 'Select one of 14 TfL lines from a dropdown — Bakerloo, Central, Circle, District, Hammersmith & City, Jubilee, Metropolitan, Northern, Piccadilly, Victoria, Waterloo & City, Elizabeth, Overground, or DLR — then click Predict.',
+    tags: ['Line Selection', '14 TfL Lines', 'One Click'],
   },
   {
     number: '02',
     icon: Database,
-    title: 'Data Collection',
-    desc: 'The system pulls live feeds — weather conditions, known special events, and years of historical delay patterns — all correlated against your exact route.',
-    tags: ['Weather APIs', 'Event DBs', 'Historical Records'],
+    title: 'Live Data Fetched',
+    desc: 'The model server simultaneously pulls two live sources in parallel: TfL Unified API for current service status on that line, and Open-Meteo for current London weather (temperature, rainfall, wind speed, gusts, visibility, snowfall, humidity). Both are fetched fresh on every single prediction — nothing is cached.',
+    tags: ['TfL Unified API', 'Open-Meteo', 'Parallel Fetch'],
   },
   {
     number: '03',
     icon: Brain,
-    title: 'ML Analysis',
-    desc: 'Over 50 weighted factors flow through Random Forest and LSTM models in parallel. Delay probability and magnitude estimates are generated in milliseconds.',
-    tags: ['50+ Factors', 'Random Forest', 'LSTM Networks'],
+    title: 'Ensemble Model Runs',
+    desc: 'A Random Forest (45% weight) and LSTM neural network (55% weight) both analyse the live inputs independently. Their outputs are combined into a weighted ensemble probability. Peak hour status is also factored in. Total compute: ~300ms.',
+    tags: ['Random Forest 45%', 'LSTM 55%', 'Peak Hour', '~300ms'],
   },
   {
     number: '04',
     icon: CheckCircle,
-    title: 'Get Your Results',
-    desc: 'You receive a structured report: probability scores per segment, expected delay windows, and smart route recommendations ranked by confidence.',
-    tags: ['Probability Score', 'Delay Window', 'Alternatives'],
+    title: 'Results Delivered',
+    desc: 'You receive delay probability (0–100%), severity class (Low / Moderate / High), TfL live status, weather summary, peak hour indicator, RF vs LSTM individual votes, and a 3-hour forecast showing how risk evolves. The result is automatically saved to your prediction history.',
+    tags: ['Probability', 'Severity', '3-Hour Forecast', 'Saved to History'],
   },
 ];
 
@@ -52,15 +52,15 @@ const techCards = [
   {
     icon: Brain,
     title: 'Machine Learning',
-    items: ['Random Forest Models', 'LSTM Neural Networks', 'Real-time Model Updates', 'Continuous Learning'],
+    items: ['Random Forest Classifier (45% weight)', 'LSTM Neural Network (55% weight)', 'Weighted ensemble output', 'Trained on historical TfL delay data'],
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     border: 'border-blue-100',
   },
   {
     icon: Database,
-    title: 'Data Sources',
-    items: ['TfL Unified API', 'Weather APIs', 'Historical Transport Data', 'Event Databases'],
+    title: 'Live Data Sources',
+    items: ['TfL Unified API (service status, live)', 'Open-Meteo (London weather, live)', 'Both fetched in parallel per request', 'No caching — always fresh'],
     color: 'text-slate-700',
     bg: 'bg-slate-50',
     border: 'border-slate-200',
@@ -68,7 +68,7 @@ const techCards = [
   {
     icon: Cpu,
     title: 'Infrastructure',
-    items: ['Cloud-based Processing', 'Real-time Predictions', '99.9% Uptime SLA', 'Secure Data Handling'],
+    items: ['Model hosted on HuggingFace Spaces', 'React 18 + Vite frontend', 'Supabase (auth + prediction history)', '~300ms average response'],
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     border: 'border-blue-100',
@@ -76,10 +76,10 @@ const techCards = [
 ];
 
 const stats = [
-  { value: '68%', label: 'Prediction Accuracy' },
-  { value: '50+', label: 'Data Factors' },
-  { value: '<500ms', label: 'Response Time' },
-  { value: '24/7', label: 'Availability' },
+  { value: '86%', label: 'Ensemble Accuracy' },
+  { value: '89%', label: 'Random Forest Accuracy' },
+  { value: '~300ms', label: 'Avg Response Time' },
+  { value: '14', label: 'TfL Lines Covered' },
 ];
 
 export function HowItWorksPage() {
@@ -113,16 +113,16 @@ export function HowItWorksPage() {
             Technical Overview
           </p>
           <h1 className="font-display font-semibold text-slate-900 leading-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-            How <em className="text-blue-600">Vyoma</em> works.
+            How <em className="text-blue-600">UK Delay Predictor</em> works.
           </h1>
           <p className="text-[1rem] text-slate-500 font-light leading-relaxed max-w-xl mb-10">
-            From raw data ingestion to confidence-ranked delay forecasts — understand the pipeline that powers accurate TfL predictions in under 500ms.
+            From line selection to ensemble model output — understand the pipeline that powers accurate TfL delay predictions in ~300ms.
           </p>
           <div className="flex items-center gap-8">
             {[
               { value: '4', label: 'Stage Pipeline' },
-              { value: '50+', label: 'Input Factors' },
-              { value: '<500ms', label: 'Response Time' },
+              { value: '86%', label: 'Ensemble Accuracy' },
+              { value: '~300ms', label: 'Response Time' },
             ].map(({ value, label }, i) => (
               <React.Fragment key={label}>
                 {i > 0 && <div className="w-px h-10 bg-slate-200 flex-shrink-0" />}

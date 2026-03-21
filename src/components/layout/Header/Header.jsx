@@ -43,7 +43,7 @@ export function Header() {
               <div className="w-2 h-2 bg-white rounded-full" />
             </div>
             <span className="font-display font-semibold text-[1.1rem] text-slate-900 tracking-tight">
-              TransitPredict
+              UK Delay Predictor
             </span>
           </a>
 

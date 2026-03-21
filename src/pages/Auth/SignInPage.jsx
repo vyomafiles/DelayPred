@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { Header } from '../../components/layout/Header';
+import { useAuthStore } from '../../store/authStore';
 
 function GoogleIcon() {
   return (
@@ -30,15 +31,22 @@ const brandStats = [
 export function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '', rememberMe: false });
+  const { login, isLoading, error, clearError } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (error) clearError();
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Welcome back to TransitPredict!');
+    try {
+      await login(formData.email, formData.password);
+      window.location.href = '/dashboard';
+    } catch {
+      // error is set in store
+    }
   };
 
   return (
@@ -54,7 +62,7 @@ export function SignInPage() {
               <div className="w-7 h-7 bg-blue-600 flex items-center justify-center flex-shrink-0">
                 <div className="w-2 h-2 bg-white rounded-full" />
               </div>
-              <span className="font-display font-semibold text-white text-lg">TransitPredict</span>
+              <span className="font-display font-semibold text-white text-lg">UK Delay Predictor</span>
             </a>
 
             <h2
@@ -92,6 +100,12 @@ export function SignInPage() {
               </h1>
               <p className="text-sm text-slate-500">Sign in to access your predictions</p>
             </div>
+
+            {error && (
+              <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+                {error}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
 
@@ -160,10 +174,11 @@ export function SignInPage() {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 group mt-1"
+                disabled={isLoading}
+                className="w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-2 group mt-1"
               >
-                Sign In
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                {isLoading ? 'Signing in…' : 'Sign In'}
+                {!isLoading && <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
               </button>
             </form>
 

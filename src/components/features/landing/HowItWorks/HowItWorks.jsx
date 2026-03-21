@@ -21,37 +21,37 @@ const steps = [
   {
     number: '01',
     icon: <Search className="w-5 h-5" />,
-    title: 'Enter Your Route',
+    title: 'Pick Your Line',
     description:
-      'Select your departure point, destination, and travel time. We find every relevant transport option.',
+      'Choose from all 14 TfL lines — Underground, Overground, Elizabeth line, or DLR. One dropdown, one click.',
   },
   {
     number: '02',
     icon: <Zap className="w-5 h-5" />,
-    title: 'AI Analysis',
+    title: 'Live Data Fetched',
     description:
-      'Machine learning processes 50+ factors: historical delays, weather, time of day, and live events.',
+      'The model instantly pulls TfL\'s live service status and Open-Meteo\'s real-time London weather. Both fetched fresh, in parallel, on every prediction.',
   },
   {
     number: '03',
     icon: <BarChart3 className="w-5 h-5" />,
-    title: 'Get Predictions',
+    title: 'Get Your Prediction',
     description:
-      'Receive probability scores per route — exact delay estimates with confidence levels.',
+      'See your delay probability (0–100%), severity level, how the RF and LSTM models each voted, and a 3-hour forecast — all in ~300ms.',
   },
   {
     number: '04',
     icon: <CheckCircle className="w-5 h-5" />,
-    title: 'Make Smart Decisions',
+    title: 'Travel With Confidence',
     description:
-      'Pick the most reliable option. Get alerts if predictions update before you travel.',
+      'Know the delay risk before you leave. Predictions reflect current network conditions so you always have the freshest picture.',
   },
 ];
 
 const stats = [
-  { value: '50+', label: 'Data factors analysed per prediction' },
-  { value: '<500ms', label: 'Average prediction response time' },
-  { value: 'TfL API', label: 'Powered by real official data' },
+  { value: '86%', label: 'Ensemble model accuracy (RF + LSTM)' },
+  { value: '~300ms', label: 'Average prediction response time' },
+  { value: '14 lines', label: 'TfL lines covered — live, every time' },
 ];
 
 export function HowItWorks() {
@@ -75,7 +75,7 @@ export function HowItWorks() {
             <em>in seconds.</em>
           </h2>
           <p className="text-lg text-slate-500 font-light">
-            Four steps from selection to smart planning.
+            Pick a line, fetch live data, get your prediction.
           </p>
         </div>
 

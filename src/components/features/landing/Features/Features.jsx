@@ -30,7 +30,7 @@ function BarChart() {
   return (
     <div className="mb-7">
       <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-3">
-        Delay probability — this week
+        3-hour delay forecast — Piccadilly
       </p>
       <div className="flex items-end gap-1.5 h-14">
         {bars.map((b, i) => (
@@ -223,7 +223,7 @@ export function Features() {
             </h2>
           </div>
           <p className="text-[1rem] text-slate-500 font-light leading-relaxed lg:max-w-sm lg:ml-auto">
-            Six capabilities working together to give you certainty on every journey — powered by live TfL data and machine learning.
+            Six capabilities working together — powered by live TfL status, London weather data, and an ensemble ML model trained to 86% accuracy.
           </p>
         </div>
 
@@ -240,9 +240,9 @@ export function Features() {
             {/* F1 — ML Predictions (2-col wide) */}
             <Card className="lg:col-span-2">
               <BarChart />
-              <h3 className="font-semibold text-slate-900 mb-2">ML-Powered Predictions</h3>
+              <h3 className="font-semibold text-slate-900 mb-2">Ensemble ML Predictions</h3>
               <p className="text-sm text-slate-500 leading-relaxed">
-                Advanced models analyse 50+ factors — historical patterns, weather, and temporal data — to forecast delays before they occur.
+                A Random Forest (45%) and LSTM neural network (55%) combine to predict delay probability using live TfL status, London weather, and peak-hour detection.
               </p>
             </Card>
 
@@ -260,9 +260,9 @@ export function Features() {
             {/* F3 — Real-time Alerts (1-col) */}
             <Card>
               <AlertMockup />
-              <h3 className="font-semibold text-slate-900 mb-2">Real-time Alerts</h3>
+              <h3 className="font-semibold text-slate-900 mb-2">Line Status Updates</h3>
               <p className="text-sm text-slate-500 leading-relaxed">
-                Push notifications the moment predictions change — so you're always ahead of the disruption.
+                Set per-line alert thresholds on your account — instantly see when a line's delay probability crosses your limit.
               </p>
             </Card>
 
@@ -293,7 +293,7 @@ export function Features() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-slate-900 mb-2">Official TfL Integration</h3>
                   <p className="text-sm text-slate-500 leading-relaxed max-w-2xl">
-                    Directly connected to the TfL Unified API — real, live data across every Underground line, Overground, Elizabeth line, and bus network in London.
+                    Directly connected to the TfL Unified API — live service status across all 14 lines: Underground, Overground, Elizabeth line, and DLR. Combined with Open-Meteo live London weather on every prediction.
                   </p>
                 </div>
                 <a

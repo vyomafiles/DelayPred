@@ -9,8 +9,10 @@ import { AboutPage } from './pages/About/AboutPage';
 import { ContactPage } from './pages/Contact/ContactPage';
 import { SignInPage } from './pages/Auth/SignInPage';
 import { GetStartedPage } from './pages/Auth/GetStartedPage';
+import { DashboardPage } from './pages/Dashboard/DashboardPage';
 import { NotFoundPage } from './pages/NotFound';
 import { ROUTES } from './constants/routes';
+import { ProtectedRoute, GuestRoute } from './components/common/AuthGuard';
 
 function App() {
   return (
@@ -59,11 +61,15 @@ function App() {
           />
           <Route
             path="/sign-in"
-            element={<SignInPage />}
+            element={<GuestRoute><SignInPage /></GuestRoute>}
           />
           <Route
             path="/get-started"
-            element={<GetStartedPage />}
+            element={<GuestRoute><GetStartedPage /></GuestRoute>}
+          />
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute><DashboardPage /></ProtectedRoute>}
           />
           <Route
             path="*"

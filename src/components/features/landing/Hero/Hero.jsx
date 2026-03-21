@@ -85,8 +85,8 @@ export function Hero() {
             {/* Description + CTAs in a 2-col sub-grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start mb-12" style={anim(280)}>
               <p className="text-[1rem] text-slate-500 leading-relaxed font-light">
-                The world's first AI-powered transport delay forecaster for UK commuters —
-                predictive insights for TfL, buses, and trains.
+                AI-powered delay prediction for London commuters — select any of 14 TfL lines
+                and get an instant probability based on live conditions.
               </p>
 
               <div className="flex flex-col gap-3">
@@ -109,9 +109,9 @@ export function Hero() {
             {/* Stats */}
             <div className="flex items-center gap-8 sm:gap-10" style={anim(370)}>
               {[
-                { value: '68%', label: 'Accuracy' },
-                { value: '24/7', label: 'Live Data' },
-                { value: 'TfL', label: 'Official API' },
+                { value: '86%', label: 'Accuracy' },
+                { value: '14', label: 'TfL Lines' },
+                { value: '~300ms', label: 'Response' },
               ].map(({ value, label }, i) => (
                 <React.Fragment key={label}>
                   {i > 0 && <div className="w-px h-10 bg-slate-200 flex-shrink-0" />}

@@ -32,7 +32,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <a href="/" className="flex items-center gap-3 mb-4">
               <div className="w-7 h-7 bg-blue-600 rounded-full" />
-              <span className="font-display font-semibold text-xl text-slate-900">TransitPredict</span>
+              <span className="font-display font-semibold text-xl text-slate-900">UK Delay Predictor</span>
             </a>
             <p className="text-sm text-slate-500 leading-relaxed max-w-xs mb-6 font-light">
               AI-powered transport delay predictions for UK commuters. Know delays before they happen.
@@ -71,7 +71,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-400">
-            © 2026 TransitPredict. All rights reserved.
+            © 2026 UK Delay Predictor. All rights reserved.
           </p>
           <a
             href="mailto:hello@transitpredict.com"

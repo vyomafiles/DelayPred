@@ -18,25 +18,25 @@ function useInView(threshold = 0.1) {
 }
 
 const values = [
-  { icon: Target, title: 'Accuracy', desc: 'We strive for the highest prediction accuracy using cutting-edge ML models continuously trained on real TfL data.' },
-  { icon: Users, title: 'User-Centric', desc: 'Every product decision is made with commuters at the centre — from alert timing to interface clarity.' },
-  { icon: Globe, title: 'Transparency', desc: 'We show probabilities, not platitudes. "68% chance of delay" is more useful than "service may be disrupted."' },
-  { icon: Lightbulb, title: 'Innovation', desc: 'Constantly pushing the boundary of what\'s possible in transport intelligence, from model architectures to UX design.' },
-  { icon: Heart, title: 'Reliability', desc: '99.9% uptime commitment. When your commute depends on us, downtime isn\'t an option.' },
-  { icon: Award, title: 'Excellence', desc: 'Premium intelligence at an accessible price — great tools shouldn\'t be gatekept behind enterprise budgets.' },
+  { icon: Target, title: 'Accuracy', desc: '86% ensemble accuracy combining Random Forest (89.51%) and LSTM (82.51%) — trained on real TfL delay data and validated against held-out test sets.' },
+  { icon: Users, title: 'User-Centric', desc: 'Commuters need a number, not a vague status. Every decision is made with that in mind — from the probability display to how the forecast is framed.' },
+  { icon: Globe, title: 'Transparency', desc: 'We show exact probabilities and break down how RF and LSTM each voted individually — so you always know what the model is thinking, not just what it concluded.' },
+  { icon: Lightbulb, title: 'Innovation', desc: 'University-level ML research applied to a real commuter problem — combining live TfL status feeds, live London weather, and a trained ensemble model into a sub-300ms prediction.' },
+  { icon: Heart, title: 'Reliability', desc: 'The model is hosted on HuggingFace\'s free tier. We\'re honest about that. Average prediction response time is around 300ms under normal conditions.' },
+  { icon: Award, title: 'Open', desc: 'Free to use, no credit card, no paywalls. This is a final-year university project built to solve a real problem for London\'s 5 million daily TfL users.' },
 ];
 
 const expertise = [
-  { title: 'Machine Learning', desc: 'Developing and training advanced prediction models using real TfL delay datasets — Random Forest, LSTM, and ensemble approaches.' },
-  { title: 'Software Engineering', desc: 'Building scalable, cloud-native systems capable of serving millions of predictions daily with sub-500ms latency.' },
-  { title: 'Data Science', desc: 'Extracting signal from noise across weather, events, historical patterns, and live feeds to power reliable forecasts.' },
+  { title: 'Machine Learning', desc: 'Training and evaluating ensemble models in Python — Random Forest at 89.51% and LSTM at 82.51% — combining into an 86% ensemble deployed on HuggingFace.' },
+  { title: 'Software Engineering', desc: 'React frontend, Supabase backend, and a live data pipeline pulling TfL status and London weather on every prediction request.' },
+  { title: 'Data Science', desc: 'Extracting signal from historical TfL delay records, live service status, and real-time weather to power a 3-hour forecast across 14 lines.' },
 ];
 
 const impact = [
-  { value: '2.5K+', label: 'Active Users' },
-  { value: '15K+', label: 'Predictions Daily' },
-  { value: '150+', label: 'Hours Saved Monthly' },
-  { value: '4.8/5', label: 'User Rating' },
+  { value: '14', label: 'TfL Lines Covered' },
+  { value: '86%', label: 'Ensemble Accuracy' },
+  { value: '~300ms', label: 'Avg Prediction Time' },
+  { value: 'Free', label: 'Always' },
 ];
 
 export function AboutPage() {
@@ -75,7 +75,7 @@ export function AboutPage() {
             <em className="text-blue-600">refuses to guess.</em>
           </h1>
           <p className="text-[1rem] text-slate-500 font-light leading-relaxed max-w-xl">
-            Vyoma is an AI-powered TfL delay prediction platform — built by a team of computer science researchers who got tired of being caught off guard by a network that rarely communicates clearly.
+            UK Delay Predictor is an AI-powered TfL delay prediction platform — built by a team of computer science researchers who got tired of being caught off guard by a network that rarely communicates clearly.
           </p>
         </div>
       </section>
@@ -93,7 +93,7 @@ export function AboutPage() {
           <div className="border-l-4 border-blue-600 pl-7 bg-blue-50/50 py-5 pr-5 rounded-r-xl">
             <p className="text-[1rem] text-slate-600 leading-relaxed font-light">
               Unlike every app that tells you about delays{' '}
-              <strong className="text-slate-800 font-semibold">after they happen</strong>, Vyoma predicts them{' '}
+              <strong className="text-slate-800 font-semibold">after they happen</strong>, UK Delay Predictor predicts them{' '}
               <strong className="text-blue-600 font-semibold">before they occur</strong> — giving you the time to adjust, reroute, or simply leave earlier with confidence.
             </p>
           </div>
@@ -142,7 +142,7 @@ export function AboutPage() {
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-5">Who We Are</p>
               <h2 className="font-display font-semibold text-slate-900 text-4xl lg:text-5xl leading-tight mb-6">
-                The team behind <em>Vyoma.</em>
+                The team behind <em>UK Delay Predictor.</em>
               </h2>
               <p className="text-[1rem] text-slate-500 font-light leading-relaxed">
                 A BSc Computer Science AI final year project developed at a top UK university. We combine deep technical expertise with a genuine frustration at how poorly London's transport network communicates with its 5 million daily users.
@@ -171,9 +171,9 @@ export function AboutPage() {
           className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${impactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="text-center mb-14">
-            <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4">Impact So Far</p>
+            <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4">By The Numbers</p>
             <h2 className="font-display font-semibold text-slate-900 text-4xl lg:text-5xl leading-tight">
-              Real numbers, <em>real commuters.</em>
+              Honest numbers, <em>real capability.</em>
             </h2>
           </div>
 
@@ -191,7 +191,7 @@ export function AboutPage() {
               href="/get-started"
               className="inline-flex items-center gap-2 bg-blue-600 text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-blue-700 transition-colors duration-200 group"
             >
-              Join them — it's free
+              Try it — it's free
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
           </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, User, MapPin, ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { Header } from '../../components/layout/Header';
+import { useAuthStore } from '../../store/authStore';
 
 const stepMeta = [
   { number: 1, label: 'Your details' },
@@ -83,6 +84,7 @@ function TextInput({ icon: Icon, ...props }) {
 
 export function GetStartedPage() {
   const [step, setStep] = useState(1);
+  const [signedUp, setSignedUp] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -92,9 +94,11 @@ export function GetStartedPage() {
     agreeTerms: false,
     newsletter: true,
   });
+  const { signup, isLoading, error, clearError } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (error) clearError();
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
@@ -103,9 +107,14 @@ export function GetStartedPage() {
     if (step < 3) setStep(s => s + 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Welcome to TransitPredict! Check your email to verify your account.');
+    try {
+      await signup(formData);
+      setSignedUp(true);
+    } catch {
+      // error is set in store
+    }
   };
 
   return (
@@ -117,6 +126,22 @@ export function GetStartedPage() {
 
       <div className="flex-1 flex items-start justify-center px-6 py-12 lg:py-16">
         <div className="w-full max-w-lg">
+
+          {/* Success state */}
+          {signedUp ? (
+            <div className="text-center py-8">
+              <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-5">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="font-display font-semibold text-slate-900 text-2xl mb-2">Check your email</h2>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-sm mx-auto">
+                We've sent a verification link to <strong className="text-slate-700">{formData.email}</strong>. Click it to activate your account.
+              </p>
+              <a href="/sign-in" className="inline-block mt-6 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+                Back to sign in →
+              </a>
+            </div>
+          ) : (<>
 
           {/* Page heading */}
           <div className="mb-8">
@@ -130,6 +155,13 @@ export function GetStartedPage() {
 
           {/* Step indicator */}
           <StepIndicator current={step} />
+
+          {/* Error message */}
+          {error && (
+            <div className="mb-5 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+              {error}
+            </div>
+          )}
 
           {/* Step content */}
           <form onSubmit={step === 3 ? handleSubmit : handleNext}>
@@ -285,10 +317,11 @@ export function GetStartedPage() {
               )}
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors duration-200 group w-full"
+                disabled={isLoading}
+                className="flex items-center justify-center gap-2 bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200 group w-full"
               >
-                {step === 3 ? 'Create Account' : 'Continue'}
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                {isLoading ? 'Creating account…' : step === 3 ? 'Create Account' : 'Continue'}
+                {!isLoading && <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
               </button>
             </div>
           </form>
@@ -311,6 +344,7 @@ export function GetStartedPage() {
             </a>
           </p>
 
+          </>)}
         </div>
       </div>
     </div>

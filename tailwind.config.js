@@ -32,6 +32,7 @@ export default {
       fontFamily: {
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
         display: ['Cormorant Garamond', 'Georgia', 'serif'],
+        jakarta: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

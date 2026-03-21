@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Brain, TrendingDown, Clock, AlertTriangle, Smartphone, BarChart3, CheckCircle, ArrowRight } from 'lucide-react';
+import { Brain, TrendingDown, Clock, Globe, Smartphone, BarChart3, CheckCircle, ArrowRight } from 'lucide-react';
 
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
@@ -21,58 +21,58 @@ const features = [
   {
     num: '01',
     icon: Brain,
-    title: 'ML-Powered Predictions',
+    title: 'Ensemble ML Model',
     tag: 'Machine Learning',
-    description: 'Random Forest and LSTM neural networks trained on years of TfL data analyse 50+ factors — historical patterns, weather, time of day, special events — to forecast delays before they happen.',
-    stat: '50+', statLabel: 'Factors Analysed',
+    description: 'Random Forest (45%) and LSTM neural network (55%) combined in a weighted ensemble achieving 86% accuracy. Each prediction shows how both models voted separately so you can see the confidence split.',
+    stat: '86%', statLabel: 'Ensemble Accuracy',
   },
   {
     num: '02',
-    icon: TrendingDown,
-    title: 'Probability-Based Insights',
-    tag: 'Precision Scores',
-    description: 'See exact delay probabilities, not vague warnings. "68% chance of a 10-minute delay on the Piccadilly line" gives you something to act on.',
-    stat: '~68%', statLabel: 'Current Accuracy',
+    icon: BarChart3,
+    title: 'Live TfL Status',
+    tag: 'TfL Unified API',
+    description: 'Pulls the official TfL Unified API on every prediction — Good Service, Minor Delays, Severe Delays — incorporated directly into the model as a live input signal.',
+    stat: '14', statLabel: 'Lines Covered',
   },
   {
     num: '03',
-    icon: Clock,
-    title: 'Proactive Planning',
-    tag: 'Forward Intelligence',
-    description: 'Predictions are available 24–48 hours before your journey. Adjust your departure, pick an alternative route, or simply leave earlier — with data behind your decision.',
-    stat: '48hr', statLabel: 'Look-ahead Window',
+    icon: Globe,
+    title: 'Live Weather Integration',
+    tag: 'Open-Meteo',
+    description: 'Open-Meteo fetches London weather in real time on every request: rain intensity, wind gusts, visibility, snowfall, and humidity. Strong gusts and heavy rain are key delay drivers the model weighs heavily.',
+    stat: 'Live', statLabel: 'Weather Data',
   },
   {
     num: '04',
-    icon: AlertTriangle,
-    title: 'Real-Time Alerts',
-    tag: 'Live Notifications',
-    description: 'Push, SMS, and email alerts fire the moment a prediction changes — so you stay one step ahead of the network, wherever you are.',
-    stat: '<30s', statLabel: 'Alert Latency',
+    icon: Clock,
+    title: '3-Hour Forecast',
+    tag: 'Forward Intelligence',
+    description: 'Beyond the current probability, see how delay risk is predicted to evolve over the next 3 hours — useful for deciding when to leave and whether conditions are improving or worsening.',
+    stat: '3hr', statLabel: 'Forecast Window',
   },
   {
     num: '05',
-    icon: Smartphone,
-    title: 'Fully Responsive',
-    tag: 'Cross-Platform',
-    description: 'Works seamlessly on every screen size today. Native iOS and Android apps with offline support and biometric authentication are coming soon.',
-    stat: '100%', statLabel: 'Device Coverage',
+    icon: TrendingDown,
+    title: 'Network Overview',
+    tag: 'All Lines at Once',
+    description: 'Refresh all 14 TfL lines simultaneously, ranked by delay risk from highest to lowest. Spot disruptions across the network before you commit to a route.',
+    stat: '14', statLabel: 'Lines at a Glance',
   },
   {
     num: '06',
-    icon: BarChart3,
-    title: 'Official TfL Integration',
-    tag: 'TfL Unified API',
-    description: 'Connected directly to the official TfL Unified API — real, live data across every Underground line, Overground, Elizabeth line, DLR, and bus network.',
-    stat: 'TfL', statLabel: 'Authoritative Source',
+    icon: Smartphone,
+    title: 'Save Routes & History',
+    tag: 'Personalisation',
+    description: 'Pin your regular lines for one-tap prediction. Every result is saved to your history so you can track recurring patterns in your commute over time.',
+    stat: '~300ms', statLabel: 'Avg Response Time',
   },
 ];
 
 const benefits = [
-  { title: 'Save Time', desc: 'Avoid delays and plan smarter. Save up to 2.5 hours per month.' },
-  { title: 'Reduce Stress', desc: 'No more surprises. Know what to expect and plan accordingly.' },
-  { title: 'Stay Productive', desc: 'Arrive on time, every time. Keep your schedule on track.' },
-  { title: 'Decide with Data', desc: 'Make travel choices based on real probabilities, not guesswork.' },
+  { title: 'Check Before You Leave', desc: 'Know in seconds whether your line is running normally — before you walk out the door.' },
+  { title: 'See the Actual Probability', desc: '"73% delay risk" tells you far more than a vague "Minor Delays" status. Act on a number, not a label.' },
+  { title: 'Plan Your Departure Time', desc: 'Use the 3-hour forecast to pick the window when delay risk is lowest and leave at the right moment.' },
+  { title: 'Understand What\'s Driving Delays', desc: 'Know whether disruption is weather-driven or an operational fault — so you can judge whether conditions will improve.' },
 ];
 
 export function FeaturesPage() {
@@ -109,13 +109,13 @@ export function FeaturesPage() {
             <em className="text-blue-600">before you travel.</em>
           </h1>
           <p className="text-[1rem] text-slate-500 font-light leading-relaxed max-w-xl mb-10">
-            Six capabilities working together to give you certainty on every journey — powered by live TfL data and machine learning trained on years of network history.
+            Six capabilities working together — live TfL status, real-time weather, and an ensemble ML model — to give you an instant, accurate picture of your line right now.
           </p>
           <div className="flex items-center gap-8">
             {[
-              { value: '6', label: 'Core Features' },
-              { value: '50+', label: 'ML Factors' },
-              { value: '48hr', label: 'Look-ahead' },
+              { value: '14', label: 'TfL Lines' },
+              { value: '86%', label: 'Accuracy' },
+              { value: '3hr', label: 'Forecast' },
             ].map(({ value, label }, i) => (
               <React.Fragment key={label}>
                 {i > 0 && <div className="w-px h-10 bg-slate-200 flex-shrink-0" />}

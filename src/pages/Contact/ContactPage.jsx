@@ -20,7 +20,7 @@ function useInView(threshold = 0.1) {
 const faqs = [
   {
     q: 'How accurate are your predictions?',
-    a: 'Our current model achieves 68% accuracy. We continuously improve by analysing prediction outcomes and retraining on new TfL data.',
+    a: 'Our ensemble model achieves 86% accuracy (Random Forest: 89.51%, LSTM: 82.51%). Each prediction shows you exactly how both models voted so you can judge confidence yourself.',
   },
   {
     q: 'Is my data secure?',
@@ -28,11 +28,15 @@ const faqs = [
   },
   {
     q: 'Which transport networks are supported?',
-    a: "We currently support TfL across all lines — Underground, Overground, Elizabeth line, DLR, and buses. UK-wide expansion is planned.",
+    a: 'We currently cover all 14 TfL rail lines — Underground (all lines), Overground, Elizabeth line, and DLR. Buses are not yet supported. Coverage expansion is planned.',
   },
   {
     q: 'Can I plan trips weeks in advance?',
-    a: 'For short-term trips (24–48 hours) we provide live predictions. For longer horizons we provide historical averages and trend data.',
+    a: 'Predictions are based on live, current conditions — they reflect what\'s happening right now on the network, not future forecasting. The 3-hour forecast shows how delay risk is expected to evolve from the current moment.',
+  },
+  {
+    q: 'What data does the model use?',
+    a: 'Every prediction fetches two live sources simultaneously: the TfL Unified API for current line status, and Open-Meteo for real-time London weather (rain, wind gusts, visibility, snowfall, humidity). Nothing is cached — every prediction is fresh.',
   },
 ];
 
@@ -126,7 +130,7 @@ export function ContactPage() {
               {
                 icon: Mail,
                 title: 'Email',
-                detail: 'hello@vyoma.ai',
+                detail: 'hello@ukdelaypredictor.com',
                 sub: 'Response within 24 hours',
               },
               {
